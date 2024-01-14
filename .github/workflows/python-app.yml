@@ -19,14 +19,17 @@ jobs:
         
     - uses: actions/checkout@v3
 
-    - name: Set up Docker Compose
-      run: docker-compose -f docker-compose.yml up -d
+    - name: Set up and run necessary Docker Compose services
+      run: docker-compose -f docker-compose.yml up -d --no-deps chrome web
+
+    - name: Check if Chrome is up and running
+      run: docker-compose -f docker-compose.yml exec chrome curl -f http://localhost:4444/wd/hub/status
 
     - name: Run unit tests
-      run: docker-compose -f docker-compose.yml run unit-test
+      run: docker-compose -f docker-compose.yml run --no-deps unit-test
 
     - name: Run integration tests
-      run: docker-compose -f docker-compose.yml run integration-test
+      run: docker-compose -f docker-compose.yml run --no-deps integration-test
 
     - name: Tear down Docker Compose
       if: always()
