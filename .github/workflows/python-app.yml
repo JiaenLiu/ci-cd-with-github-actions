@@ -23,7 +23,11 @@ jobs:
       run: docker-compose -f docker-compose.yml up -d --no-deps chrome web
 
     - name: Check if Chrome is up and running
-      run: docker-compose -f docker-compose.yml exec -T chrome curl -f http://localhost:4444/wd/hub/status
+      run: |
+        until docker-compose -f docker-compose.yml exec -T web curl -f http://chrome:4444/wd/hub/status; do
+            echo "Waiting for Chrome service..."
+            sleep 5
+        done
 
     - name: Run unit tests
       run: docker-compose -f docker-compose.yml run --no-deps unit-test
