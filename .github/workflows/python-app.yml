@@ -21,6 +21,13 @@ jobs:
       run: |
         docker-compose -f docker-compose.yml up
 
+        
+    # The tests are included in the docker-compose.yml file
+
+    - name: Tear down Docker Compose
+      run: |
+        docker-compose -f docker-compose.yml down
+
   build:
 
     runs-on: ubuntu-latest
