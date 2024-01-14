@@ -1,13 +1,24 @@
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 class TestAppE2E(unittest.TestCase):
     def setUp(self):
-        # Launch your flask app first
-        self.driver = webdriver.Chrome('/Users/liujiaen/Documents/Codes/assignment/chromedriver-mac-arm64/chromedriver')
-        self.driver.get('http://localhost:5000')
+        # Set Chrome options
+
+        options = webdriver.ChromeOptions()
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox') # Disables the sandbox for all process types that are normally sandboxed.
+        options.add_argument('--disable-dev-shm-usage') # Overcomes limited resource problems.
+        options.add_argument('--disable-gpu') # Applicable to windows os only
+        options.add_argument('--remote-debugging-port=9222')
+
+
+        self.driver = webdriver.Remote(
+            command_executor='http://chrome:4444/wd/hub',
+            options=options)
+        self.driver.get("http://web:5000/")
 
     def test_add_and_delete_item(self):
         # you can use the driver to find elements in the page

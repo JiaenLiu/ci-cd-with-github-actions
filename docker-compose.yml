@@ -1,0 +1,26 @@
+version: '3'
+services:
+  web:
+    image: my-flask-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+
+  unit-test:
+    image: my-flask-app
+    command: python unit_test.py
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
+
+  integration-test:
+    image: my-flask-app
+    command: python integration_test.py
+    depends_on:
+      - web
