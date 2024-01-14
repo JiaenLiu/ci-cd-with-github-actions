@@ -16,24 +16,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up and run Docker Compose
-      run: |
-        docker-compose -f docker-compose.yml run 
-
         
-    # The tests are included in the docker-compose.yml file
+    - uses: actions/checkout@v3
+
+    - name: Set up Docker Compose
+      run: docker-compose -f docker-compose.yml up -d
+
+    - name: Run unit tests
+      run: docker-compose -f docker-compose.yml run unit-test
+
+    - name: Run integration tests
+      run: docker-compose -f docker-compose.yml run integration-test
 
     - name: Tear down Docker Compose
       if: always()
-      run: |
-        docker-compose -f docker-compose.yml down
+      run: docker-compose -f docker-compose.yml down
 
   build:
 
     runs-on: ubuntu-latest
 
-    # needs: test
+    needs: test
 
     steps:
 
