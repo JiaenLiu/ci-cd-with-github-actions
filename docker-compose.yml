@@ -9,6 +9,12 @@ services:
       - "5000:5000"
     volumes:
       - .:/app
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://web:5000/"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
 
   chrome:
     image: selenium/standalone-chrome:latest
@@ -38,4 +44,6 @@ services:
     command: python integration_test.py
     depends_on:
       chrome:
+        condition: service_healthy
+      web:
         condition: service_healthy
