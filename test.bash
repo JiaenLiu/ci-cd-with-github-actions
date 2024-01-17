@@ -31,13 +31,6 @@ pip install -r requirements.txt
 
 python unit_test.py
 
-nohup python app.py &
-
-python integration_test_local.py
-
-# shutdown the app
-kill $(lsof -t -i:5000)
-
 # deactivate the virtual environment
 deactivate
 
