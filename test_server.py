@@ -3,6 +3,8 @@
 
 from flask import Flask, request, render_template, redirect, url_for
 
+import subprocess
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -16,9 +18,17 @@ def test():
 
     # Check if the push is to the desired branch, e.g., 'refs/heads/testing'
     if ref == 'refs/heads/stage':
-        return "test finished"
         # this hook is coming from a push done to the "testing" branch
         # Add your code logic here
+
+        # run test.bash script to test the app.py file
+
+        output = subprocess.run(["bash", "test.bash"])
+
+        if output.returncode == 0:
+            return "test passed"
+        else:
+            return {"return code: ": output.returncode, "output: ": output.stdout}
     
     else:
         return "not pushed to stage branch"
@@ -30,9 +40,15 @@ def deployment():
 
     # Check if the push is to the desired branch, e.g., 'refs/heads/testing'
     if ref == 'refs/heads/main':
-        return "deployment finished"
         # this hook is coming from a push done to the "testing" branch
         # Add your code logic here
+    
+        output = subprocess.run(["bash", "deployment.bash"])
+
+        if output.returncode == 0:
+            return "deployment passed"
+        else:
+            return {"return code: ": output.returncode, "output: ": output.stdout}
     
     else:
         return "not pushed to main branch"

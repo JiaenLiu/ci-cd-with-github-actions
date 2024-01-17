@@ -4,7 +4,7 @@
 REPO_URL="git@github.com:JiaenLiu/ci-cd-with-github-actions.git"
 
 # Define the directory to clone the repository
-CLONE_DIR="ci-cd-repo-tmp"
+CLONE_DIR="ci-cd-repo-deploy"
 
 # Create a temporary folder to store the repository
 mkdir -p $CLONE_DIR
@@ -24,26 +24,10 @@ source venv/bin/activate
 # Install requirements
 pip install -r requirements.txt
 
-# Run tests (assuming there's a script or command to run tests)
-# Replace 'run-tests-command' with the actual command to run tests
-
-# run the test
-
-python unit_test.py
-
+# Launch the app (assuming there's a script or command to launch the app)
+# Replace 'launch-app-command' with the actual command to launch the app
+# Deployment-related tasks can go here
 nohup python app.py &
-
-python integration_test_local.py
-
-# shutdown the app
-kill $(lsof -t -i:5000)
-
-# deactivate the virtual environment
-deactivate
-
-# Cleaning up: delete the tmp folder
-cd ..
-rm -rf $CLONE_DIR
 
 # Exiting the script
 exit 0
