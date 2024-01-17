@@ -19,6 +19,9 @@ def test():
         return "test finished"
         # this hook is coming from a push done to the "testing" branch
         # Add your code logic here
+    
+    else:
+        return "not pushed to stage branch"
 
 @app.route("/deployment", methods=["POST"])
 def deployment():
@@ -30,6 +33,9 @@ def deployment():
         return "deployment finished"
         # this hook is coming from a push done to the "testing" branch
         # Add your code logic here
+    
+    else:
+        return "not pushed to main branch"
 
 
 if __name__ == '__main__':
