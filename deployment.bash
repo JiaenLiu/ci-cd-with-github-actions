@@ -25,7 +25,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # Launch the app (assuming there's a script or command to launch the app)
-# Replace 'launch-app-command' with the actual command to launch the app
 # Deployment-related tasks can go here
 nohup python app.py &
 
