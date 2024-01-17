@@ -42,7 +42,7 @@ kill $(lsof -t -i:5000)
 deactivate
 
 # Cleaning up: delete the tmp folder
-rm -rf tmp
+rm -rf $CLONE_DIR
 
 # Exiting the script
 exit 0
