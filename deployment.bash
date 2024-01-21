@@ -31,13 +31,14 @@ pip install -r requirements.txt
 # Deployment-related tasks can go here
 
 # Launch the app in the background and rerun it if the server crashes
-count=0
-while [ $count -lt 3 ]
-do
-    nohup python app.py &
-    wait $!
-    count=`expr $count + 1`
-done
+python app.py 
+# count=0
+# while [ $count -lt 3 ]
+# do
+#     nohup python app.py &
+#     wait $!
+#     count=`expr $count + 1`
+# done
 
 # Exiting the script
 exit 0
