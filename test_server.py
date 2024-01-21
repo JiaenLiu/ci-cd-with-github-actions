@@ -1,7 +1,7 @@
 # Description: This file is used to test the server.py file. It is not used in the final product.
 # Three endpoints are created to test the server.py file. The first endpoint is used to test the app.py 
 
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request
 
 import subprocess
 
@@ -42,8 +42,10 @@ def deployment():
     if ref == 'refs/heads/main':
         # this hook is coming from a push done to the "testing" branch
         # Add your code logic here
+
+        command = ["bash", "deployment.bash"]
     
-        output = subprocess.run(["bash", "deployment.bash"])
+        output = subprocess.run(command, close_fds=True)
 
         if output.returncode == 0:
             return "deployment passed"
