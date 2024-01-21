@@ -15,14 +15,14 @@ git clone $REPO_URL $CLONE_DIR
 # Change to the repository directory
 cd $CLONE_DIR
 
-# Install virtualenv
-pip install virtualenv
+# # Install virtualenv
+# pip install virtualenv
 
-# create a virtual environment
-python3 -m venv venv
+# # create a virtual environment
+# python3 -m venv venv
 
-# Activate the virtual environment
-source venv/bin/activate
+# # Activate the virtual environment
+# source venv/bin/activate
 
 # Install requirements
 pip install -r requirements.txt
