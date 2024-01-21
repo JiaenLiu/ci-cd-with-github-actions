@@ -7,8 +7,12 @@ You're now expected to run the full process. We've exercised creating a simple g
 - write 2 unit tests and an integration test, similar to how we did in the previous session
 - configure your github workflow to run the unit and integration tests on the Docker container
 - after the tests pass, push the image to Dockerhub
-- Your deliverable is a screenshot of your uploaded image to Dockerhub, a link to your dockerhub repo, a screenshot of your executed github pipeline, your github workflow config file, and your unit/integration test files.
+- Your deliverable is a screenshot of your uploaded image to Dockerhub, a link to your dockerhub repo, a screenshot of your executed github pipeline, your github workflow config file, and your unit/integration test files.   
 
 test on main    
+          
      
+  
+           
+    
    
